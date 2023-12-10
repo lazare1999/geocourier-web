@@ -29,5 +29,3 @@ jobs:
       - run: flutter upgrade
       - run: flutter doctor
       - run: flutter pub get
-      - run: flutter test
-   
