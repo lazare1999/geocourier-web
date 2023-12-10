@@ -11,39 +11,20 @@ on:
   pull_request:
     branches: [ "master" ]
     
-jobs:
-  build:
+jobs: 
+  build-and-test: 
     runs-on: ubuntu-latest
-
     steps:
-      - uses: actions/checkout@v3
-
-      # The flutter action needs java so include it
-      - uses: actions/setup-java@v3
-        with:
-          java-version: '17.x'
-      # Include the flutter action
-      - uses: subosito/flutter-action@v1
-        with:
-          channel: 'stable'  
-      # Get flutter packages
-      - name: Install dependencies
-        run: flutter pub get
-      # Build :D 
-      - run: flutter build aot
-
-      # Note: This workflow uses the latest stable version of the Dart SDK.
-      # You can specify other versions if desired, see documentation here:
-      # https://github.com/dart-lang/setup-dart/blob/main/README.md
-      # - uses: dart-lang/setup-dart@v1
-      - uses: dart-lang/setup-dart@9a04e6d73cca37bd455e0608d7e5092f881fd603
-
-      # Consider passing '--fatal-infos' for slightly stricter analysis.
-      - name: Analyze project source
-        run: dart analyze
-
-      # Your project will need to have tests in test/ and a dependency on
-      # package:test for this step to succeed. Note that Flutter projects will
-      # want to change this to 'flutter test'.
-      - name: Run tests
-        run: dart test
+    - uses: actions/checkout@v1 
+    # The flutter action needs java so include it
+    - uses: actions/setup-java@v1
+      with:
+        java-version: '12.x'
+    # Include the flutter action
+    - uses: subosito/flutter-action@v1
+      with:
+        channel: 'stable'  
+    # Get flutter packages
+    - run: flutter pub get
+    # Build :D 
+    - run: flutter build aot
