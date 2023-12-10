@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "744694669633",
+    "firebase_url": "https://geocourier-89986-default-rtdb.firebaseio.com",
+    "project_id": "geocourier-89986",
+    "storage_bucket": "geocourier-89986.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:744694669633:android:b24dbf203824eb90fe81c0",
+        "android_client_info": {
+          "package_name": "ge.geocourier.couriers"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "744694669633-gpq5ov4kveo4e2br4jngof1b5m0s8rlj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ge.geocourier.couriers",
+            "certificate_hash": "3e64b199a91931a2a40602737641dfc5a2a7c519"
+          }
+        },
+        {
+          "client_id": "744694669633-961fls6p7ngp43a051l70940ak135egf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDVZG8RhE54aYStpmGgN_SIbnrNQDcRIHE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "744694669633-961fls6p7ngp43a051l70940ak135egf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

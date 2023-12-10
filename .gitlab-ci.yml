@@ -1,0 +1,54 @@
+image: docker:stable
+
+variables:
+  DOCKER_DRIVER: overlay2
+  DOCKER_BUILDKIT: 1
+  SERVICE_NAME: geocourier-web
+  CI_REGISTRY_IMAGE: dockerhub.softgen.ge/geocourier/geocourier-web
+
+
+stages:
+  - build
+  - deploy
+
+Build:
+  stage: build
+  before_script:
+    - echo $DOCKER_REGISTRY_PASSWORD | docker login -u gitlab-runner --password-stdin $CI_REGISTRY
+  script:
+    - docker build -t $CI_REGISTRY_IMAGE .
+    - docker push $CI_REGISTRY_IMAGE:latest
+  only:
+    - master
+
+
+Deploy:
+  stage: deploy
+  before_script:
+    - echo $DOCKER_REGISTRY_PASSWORD | docker login -u gitlab-runner --password-stdin $CI_REGISTRY
+  script:
+    - exists=`docker service ls -f name=$SERVICE_NAME -q | wc -l`
+    - |
+      if [ $exists -eq 0 ]
+      then
+        docker service create \
+          --with-registry-auth \
+          --network softgen_net \
+          --constraint node.role==worker \
+          --publish published=4016,target=80 \
+          --name $SERVICE_NAME \
+          $CI_REGISTRY_IMAGE:latest
+      else
+        docker service update \
+          --force \
+          --with-registry-auth \
+          --update-delay 1m \
+          --update-failure-action rollback \
+          --update-order start-first \
+          --image $CI_REGISTRY_IMAGE:latest \
+          $SERVICE_NAME
+      fi
+  tags:
+    - jedi
+  only:
+    - master
