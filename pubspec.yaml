@@ -132,7 +132,7 @@ flutter:
    - assets/images/flags/rus.png
    - assets/images/flags/gb.png
    - assets/images/flags/ge.png
-   - .env
+#   - .env
 #     - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
