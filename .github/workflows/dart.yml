@@ -27,7 +27,6 @@ jobs:
           flutter-version: '3.7.7'
       - run: flutter --version
       - run: flutter upgrade
-      - run: flutter doctor --android-licenses
       - run: flutter doctor
       - run: flutter pub get
       - run: flutter test
